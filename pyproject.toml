@@ -1,0 +1,41 @@
+[project]
+name = "transformer-from-scratch"
+version = "0.1.0"
+description = "Implementing the Transformer architecture from 'Attention Is All You Need'"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/transformer"]
+
+[tool.uv]
+cache-dir = "/tmp/uv-cache"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
