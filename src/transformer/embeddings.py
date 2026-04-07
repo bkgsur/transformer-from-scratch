@@ -81,8 +81,9 @@ class PositionalEncoding(nn.Module):
         # register_buffer: pe moves with the model (e.g. to GPU) but is NOT
         # a trainable parameter — positional encodings are fixed, not learned.
         self.register_buffer('pe', pe)
-
-    def forward(self, x):
+    # x: (batch, seq_len, d_model)
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # x: (batch, seq_len, d_model)
         # Slice the precomputed table to the current sequence length and add
         # to token embeddings. requires_grad_(False) ensures no gradient flows
         # through the positional encoding (it is fixed).
